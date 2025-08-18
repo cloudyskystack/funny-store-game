@@ -1,3 +1,3 @@
-silly store game hehe
-planning to implement api reading
+silly store game hehe\n
+planning to implement api reading\n
 for now, store data in lists/structs initialised in the script
