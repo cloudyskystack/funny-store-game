@@ -30,9 +30,12 @@ void new_item() {
 
 void list_stock() {
     cout << "list of products:\n";
-    for (int i = 0; i < storeroom.max_size(); i++) {
-        cout << storeroom.at(i).name << " - $" << storeroom.at(i).price << " (" << storeroom.at(i).stock << " in stock)";
-    }
+    if (storeroom.max_size() == 0) cout << "no products in stock";
+    else {
+        for (int i = 0; i < storeroom.max_size(); i++) {
+            cout << storeroom.at(i).name << " - $" << storeroom.at(i).price << " (" << storeroom.at(i).stock << " in stock)";
+        }
+    }   
 }
 
 int main() {
