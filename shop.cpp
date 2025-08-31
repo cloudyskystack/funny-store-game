@@ -33,7 +33,7 @@ void list_stock() {
     if (storeroom.size() == 0) cout << "no products in stock";
     else {
         for (int i = 0; i < storeroom.size(); i++) {
-            cout << storeroom.at(i).name << " - $" << storeroom.at(i).price << " (" << storeroom.at(i).stock << " in stock)";
+            cout << storeroom.at(i).name << " - $" << storeroom.at(i).price << " (" << storeroom.at(i).stock << " in stock)\n";
         }
     }   
 }
