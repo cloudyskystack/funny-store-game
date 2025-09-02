@@ -13,7 +13,7 @@ vector<item> storeroom;
 
 void new_item() {
     int n;
-    cout << "guidelines for inputs\n---------------------\nspaces in item names are not allowed. separate words with underscores or dashes\nintegers only for prices and stocks\n\n";
+    cout << "guidelines for inputs\n---------------------\nspaces in item names are not allowed. separate words with underscores or dashes (program WILL CRASH)\nintegers only for prices and stocks\n\n";
     cout << "number of items: "; cin >> n;
     
     for (int i = 0; i < n; i++) {
@@ -46,9 +46,14 @@ int main() {
         if (user.compare("customer") == 0) {
             cout << "\n1. buy\n2. check balance\n3. sign out\n> ";
             cin >> option;
-            if (option == 1) {cout << "placeholder - buy\n";}
-            else if (option == 2) {cout << "placeholder - check\n";}
-            else signed_in = false;
+            while (not(option == 1 or option == 2 or option == 3)) {
+                if (option == 1) {cout << "placeholder - buy\n"; break;}
+                else if (option == 2) {cout << "placeholder - check\n"; break;}
+                else if (option == 3) {signed_in = false; break;}
+                else {
+                    cout << "invalid input. please enter 1 / 2 / 3\n> ";
+                }
+            }
         }
         else if (user.compare("staff") == 0) {
             cout << "\n1. check stock\n2. add new product\n3. sign out\n> ";
