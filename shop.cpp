@@ -8,8 +8,9 @@ struct item {
     int price;
     int stock;
 };
-
 vector<item> storeroom;
+
+int store_balance, user_balance;
 
 void new_item() {
     int n;
