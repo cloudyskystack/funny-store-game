@@ -52,6 +52,7 @@ int main() {
                 else if (option == 3) {signed_in = false; break;}
                 else {
                     cout << "invalid input. please enter 1 / 2 / 3\n> ";
+                    break;
                 }
             }
         }
