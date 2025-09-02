@@ -46,15 +46,10 @@ int main() {
         if (user.compare("customer") == 0) {
             cout << "\n1. buy\n2. check balance\n3. sign out\n> ";
             cin >> option;
-            while (not(option == 1 or option == 2 or option == 3)) {
-                if (option == 1) {cout << "placeholder - buy\n"; break;}
-                else if (option == 2) {cout << "placeholder - check\n"; break;}
-                else if (option == 3) {signed_in = false; break;}
-                else {
-                    cout << "invalid input. please enter 1 / 2 / 3\n> ";
-                    break;
-                }
-            }
+            if (option == 1) {cout << "placeholder - buy\n";}
+            else if (option == 2) {cout << "placeholder - check\n";}
+            else if (option == 3) {signed_in = false;}
+            else {cout << "invalid option; plese enter 1/2/3\n";}
         }
         else if (user.compare("staff") == 0) {
             cout << "\n1. check stock\n2. add new product\n3. sign out\n> ";
