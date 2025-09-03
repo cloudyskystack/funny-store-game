@@ -12,11 +12,6 @@ struct item {
 vector<item> store_inventory; int store_balance = 1000;
 vector<item> user_inventory; int user_balance = 500;
 
-void buy() {
-    cout << "testing!";
-    list_stock()
-}
-
 void new_item() {
     int n;
     cout << "guidelines for inputs\n---------------------\nspaces in item names are not allowed. separate words with underscores or dashes (program WILL CRASH)\nintegers only for prices and stocks\n\n";
@@ -42,6 +37,11 @@ void list_stock() {
             cout << store_inventory.at(i).name << " - $" << store_inventory.at(i).price << " (" << store_inventory.at(i).stock << " in stock)\n";
         }
     }   
+}
+
+void buy() {
+    cout << "testing!";
+    list_stock()
 }
 
 int main() {
