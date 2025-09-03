@@ -8,9 +8,14 @@ struct item {
     int price;
     int stock;
 };
-vector<item> storeroom;
 
-int store_balance, user_balance;
+vector<item> store_inventory; int store_balance = 1000;
+vector<item> user_inventory; int user_balance = 500;
+
+void buy() {
+    cout << "testing!";
+    list_stock()
+}
 
 void new_item() {
     int n;
@@ -25,16 +30,16 @@ void new_item() {
         cout << "price: "; cin >> thing.price;
         cout << "stock: "; cin >> thing.stock;
     
-        storeroom.push_back(thing);
+        store_inventory.push_back(thing);
     }
 }
 
 void list_stock() {
     cout << "list of products:\n";
-    if (storeroom.size() == 0) cout << "no products in stock";
+    if (store_inventory.size() == 0) cout << "no products in stock";
     else {
-        for (int i = 0; i < storeroom.size(); i++) {
-            cout << storeroom.at(i).name << " - $" << storeroom.at(i).price << " (" << storeroom.at(i).stock << " in stock)\n";
+        for (int i = 0; i < store_inventory.size(); i++) {
+            cout << store_inventory.at(i).name << " - $" << store_inventory.at(i).price << " (" << store_inventory.at(i).stock << " in stock)\n";
         }
     }   
 }
