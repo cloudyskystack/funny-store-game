@@ -40,8 +40,13 @@ void list_stock() {
 }
 
 void buy() {
-    cout << "testing!";
-    list_stock()
+    list_stock();
+    int n;
+    cout << "\nnumber of items to buy: "; cin >> n;
+    for (int i = 0; i < n; i++) {
+        string name; bool match = false;
+        cout << "product name: "; cin >> name;
+    }
 }
 
 int main() {
