@@ -9,11 +9,12 @@ struct item {
     int stock;
 };
 
-vector<item> storeroom;
+vector<item> store_inventory; int store_balance = 1000;
+vector<item> user_inventory; int user_balance = 500;
 
 void new_item() {
     int n;
-    cout << "guidelines for inputs\n---------------------\nspaces in item names are not allowed. separate words with underscores or dashes\nintegers only for prices and stocks\n\n";
+    cout << "guidelines for inputs\n---------------------\nspaces in item names are not allowed. separate words with underscores or dashes (program WILL CRASH)\nintegers only for prices and stocks\n\n";
     cout << "number of items: "; cin >> n;
     
     for (int i = 0; i < n; i++) {
@@ -24,14 +25,27 @@ void new_item() {
         cout << "price: "; cin >> thing.price;
         cout << "stock: "; cin >> thing.stock;
     
-        storeroom.push_back(thing);
+        store_inventory.push_back(thing);
     }
 }
 
 void list_stock() {
     cout << "list of products:\n";
-    for (int i = 0; i < storeroom.max_size(); i++) {
-        cout << storeroom.at(i).name << " - $" << storeroom.at(i).price << " (" << storeroom.at(i).stock << " in stock)";
+    if (store_inventory.size() == 0) cout << "no products in stock";
+    else {
+        for (int i = 0; i < store_inventory.size(); i++) {
+            cout << store_inventory.at(i).name << " - $" << store_inventory.at(i).price << " (" << store_inventory.at(i).stock << " in stock)\n";
+        }
+    }   
+}
+
+void buy() {
+    list_stock();
+    int n;
+    cout << "\nnumber of items to buy: "; cin >> n;
+    for (int i = 0; i < n; i++) {
+        string name; bool match = false;
+        cout << "product name: "; cin >> name;
     }
 }
 
@@ -43,16 +57,18 @@ int main() {
         if (user.compare("customer") == 0) {
             cout << "\n1. buy\n2. check balance\n3. sign out\n> ";
             cin >> option;
-            if (option == 1) {cout << "placeholder - buy\n";}
-            else if (option == 2) {cout << "placeholder - check\n";}
-            else signed_in = false;
+            if (option == 1) cout << "placeholder - buy stuff\n";
+            else if (option == 2) cout << "placeholder - check\n";
+            else if (option == 3) signed_in = false;
+            else cout << "invalid option; please enter 1/2/3\n";
         }
         else if (user.compare("staff") == 0) {
             cout << "\n1. check stock\n2. add new product\n3. sign out\n> ";
             cin >> option;
             if (option == 1) list_stock();
             else if (option == 2) new_item();
-            else signed_in = false;
+            else if (option == 3) signed_in = false;
+            else cout << "invalid option; please enter 1/2/3\n";
         }
     }
     cout << "\nsigning you out. bye bye :D\n";

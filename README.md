@@ -1,3 +1,4 @@
 silly store game hehe<br>
-planning to implement api reading<br>
-for now, store data in lists/structs initialised in the script<br>
+planning to implement fstream or python api or json reading<br>
+on this note, if you decide that you have too much free time, you can try to rewrite the script in python<br>
+for now, store data in lists/structs initialised in the script
