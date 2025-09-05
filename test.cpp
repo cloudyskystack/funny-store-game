@@ -4,7 +4,15 @@
 using namespace std;
 
 int main() {
-    ofstream MyFile("filename.txt");
-    MyFile << "Files can be tricky, but it is fun enough!";
-    MyFile.close();
+    ofstream myfile("filename.txt");
+    myfile << "Files can be tricky, but it is fun enough!\n";
+    myfile << "this is the second line in the text file";
+    myfile.close();
+
+    string mytext;
+    ifstream myreadfile("filename.txt");
+    while (getline(myreadfile, mytext)) {
+        cout << mytext;
+    }
+    myreadfile.close();
 }

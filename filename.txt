@@ -1,1 +1,2 @@
 Files can be tricky, but it is fun enough!
+this is the second line in the text file
