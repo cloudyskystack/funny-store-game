@@ -57,7 +57,7 @@ int main() {
         if (user.compare("customer") == 0) {
             cout << "\n1. buy\n2. check balance\n3. sign out\n> ";
             cin >> option;
-            if (option == 1) cout << "placeholder - buy\n";
+            if (option == 1) cout << "placeholder - buy stuff\n";
             else if (option == 2) cout << "placeholder - check\n";
             else if (option == 3) signed_in = false;
             else cout << "invalid option; please enter 1/2/3\n";
