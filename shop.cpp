@@ -55,6 +55,6 @@ int main() {
             else signed_in = false;
         }
     }
-    cout << "\nsigning you out. bye bye :D";
+    cout << "\nsigning you out. bye bye :D\n";
     return 0;
 }
