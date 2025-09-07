@@ -15,7 +15,8 @@ vector<item> user_inventory; int user_balance = 500;
 void new_item() {
     int n;
     cout << "guidelines for inputs\n---------------------\n";
-    cout << "spaces in item names are not allowed. separate words with underscores or dashes (program WILL CRASH)\n";
+    cout << "spaces in item names are not allowed.
+     separate words with underscores or dashes (program WILL CRASH)\n";
     cout << "integers only for prices and stocks\n\n";
     cout << "number of items: "; cin >> n;
     
@@ -36,7 +37,8 @@ void list_stock() {
     if (store_inventory.size() == 0) cout << "no products in stock";
     else {
         for (int i = 0; i < store_inventory.size(); i++) {
-            cout << store_inventory.at(i).name << " - $" << store_inventory.at(i).price << " (" << store_inventory.at(i).stock << " in stock)\n";
+            cout << store_inventory.at(i).name << " - $" << store_inventory.at(i).price
+             << " (" << store_inventory.at(i).stock << " in stock)\n";
         }
     }   
 }
