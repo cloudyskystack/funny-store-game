@@ -14,7 +14,9 @@ vector<item> user_inventory; int user_balance = 500;
 
 void new_item() {
     int n;
-    cout << "guidelines for inputs\n---------------------\nspaces in item names are not allowed. separate words with underscores or dashes (program WILL CRASH)\nintegers only for prices and stocks\n\n";
+    cout << "guidelines for inputs\n---------------------\n";
+    cout << "spaces in item names are not allowed. separate words with underscores or dashes (program WILL CRASH)\n";
+    cout << "integers only for prices and stocks\n\n";
     cout << "number of items: "; cin >> n;
     
     for (int i = 0; i < n; i++) {
