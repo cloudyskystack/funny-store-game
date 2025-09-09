@@ -9,11 +9,11 @@ int main () {
     ofstream data_file("data.csv");
     data_file << "test_product,55,32";
     data_file.close();
-
-    string item_data
+    
     ifstream read_file("data.csv");
+    string item_data;
     while (getline(read_file, item_data)) {
-        cout << item_data;
+        cout << item_data << endl;
     }
-    item_data.close();
+    read_file.close();
 }
