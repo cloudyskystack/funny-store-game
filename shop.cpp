@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -11,8 +12,7 @@ struct item {
     int stock;
 };
 
-vector<item> store_inventory; int store_balance = 1000;
-vector<item> user_inventory; int user_balance = 500;
+ofstream store_inventory("store_inventory.csv");
 
 void new_item() {
     int n;
@@ -29,18 +29,31 @@ void new_item() {
         cout << "name:  "; cin >> thing.name;
         cout << "price: "; cin >> thing.price;
         cout << "stock: "; cin >> thing.stock;
-    
-        store_inventory.push_back(thing);
+
+        store_inventory << thing.name << "," << thing.price << "," 
+        << thing.stock << "\n";
     }
+    store_inventory.close();
 }
 
 void list_stock() {
     cout << "list of products:\n";
-    if (store_inventory.size() == 0) cout << "no products in stock";
+    if (false) cout << "no products in stock"; // placeholder for empty file checking
     else {
-        for (int i = 0; i < store_inventory.size(); i++) {
-            cout << store_inventory.at(i).name << " - $" << store_inventory.at(i).price
-             << " (" << store_inventory.at(i).stock << " in stock)\n";
+        ifstream store_inventory("store_inventory.csv");
+        string item_data;
+
+        while(getline(store_inventory, item_data)) {
+            stringstream ss(item_data);
+            string item_name;
+            int item_price, item_quantity;
+            char delimiter;
+
+            getline(ss, item_name, ',');
+            ss >> item_price >> delimiter >> item_quantity;
+
+            cout << item_name << " - $" << item_price 
+            << " (" << item_quantity << " in stock)\n";
         }
     }   
 }
