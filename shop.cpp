@@ -11,9 +11,8 @@ struct item {
     int stock;
 };
 
-ofstream store_inventory("store_inventory.csv");
-
 void new_item() {
+    ofstream store_inventory("store_inventory.csv");
     int n;
     cout << "guidelines for inputs\n---------------------\n";
     cout << "spaces in item names are not allowed. ";
@@ -52,6 +51,7 @@ void list_stock() {
         cout << item_name << " - $" << item_price 
         << " (" << item_quantity << " in stock)\n";
     }
+    cout << "end of list\n";
     store_inventory.close();
 }
 
