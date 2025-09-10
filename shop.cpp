@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <vector>
 using namespace std;
 
 struct item {
@@ -38,24 +37,22 @@ void new_item() {
 
 void list_stock() {
     cout << "list of products:\n";
-    if (false) cout << "no products in stock"; // placeholder for empty file checking
-    else {
-        ifstream store_inventory("store_inventory.csv");
-        string item_data;
+    ifstream store_inventory("store_inventory.csv");
+    string item_data;
 
-        while(getline(store_inventory, item_data)) {
-            stringstream ss(item_data);
-            string item_name;
-            int item_price, item_quantity;
-            char delimiter;
+    while(getline(store_inventory, item_data)) {
+        stringstream ss(item_data);
+        string item_name;
+        int item_price, item_quantity;
+        char delimiter;
 
-            getline(ss, item_name, ',');
-            ss >> item_price >> delimiter >> item_quantity;
+        getline(ss, item_name, ',');
+        ss >> item_price >> delimiter >> item_quantity;
 
-            cout << item_name << " - $" << item_price 
-            << " (" << item_quantity << " in stock)\n";
-        }
-    }   
+        cout << item_name << " - $" << item_price 
+        << " (" << item_quantity << " in stock)\n";
+    }
+    store_inventory.close();
 }
 
 void buy() {
@@ -90,6 +87,6 @@ int main() {
             else cout << "invalid option; please enter 1/2/3\n";
         }
     }
-    cout << "\nsigning you out. bye bye :D\n";
+    cout << "\nsigning you out. bye bye :D\n\n";
     return 0;
 }
