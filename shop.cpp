@@ -12,7 +12,8 @@ struct item {
 };
 
 void new_item() {
-    ofstream store_inventory("store_inventory.csv");
+    fstream store_inventory("store_inventory.csv");
+    store_inventory.open("store_inventory.csv", fstream::app); // THIS DOESN'T WORK???
     int n;
     cout << "guidelines for inputs\n---------------------\n";
     cout << "spaces in item names are not allowed. ";
