@@ -11,8 +11,7 @@ struct item {
 };
 
 void new_item() {
-    fstream store_inventory("store_inventory.csv");
-    store_inventory.open("store_inventory.csv", fstream::app); // THIS DOESN'T WORK???
+    ofstream store_inventory("store_inventory.csv", ios::app); // THIS DOESN'T WORK???
     int n;
     cout << "guidelines for inputs\n---------------------\n";
     cout << "spaces in item names are not allowed. ";
@@ -66,25 +65,29 @@ void buy() {
 }
 
 int main() {
-    string user; int option; bool signed_in = true;
-    cout << "welcome to our shop :)\n\nsigning in as:\ncustomer\nstaff\nadmin\n> ";
+    int user, option; bool signed_in = true;
+    cout << "welcome to our shop :)\n\nsigning in as:\n1. customer\n2. staff\n3. admin\n>  ";
     cin >> user;
     while (signed_in) {
-        if (user.compare("customer") == 0) {
-            cout << "\n1. buy\n2. check balance\n3. sign out\n> ";
+        if (user == 1) {
+            cout << "\n1. buy\n2. check balance\n3. sign out\n>  ";
             cin >> option;
             if (option == 1) cout << "placeholder - buy stuff\n";
             else if (option == 2) cout << "placeholder - check\n";
             else if (option == 3) signed_in = false;
             else cout << "invalid option; please enter 1/2/3\n";
         }
-        else if (user.compare("staff") == 0) {
-            cout << "\n1. check stock\n2. add new product\n3. sign out\n> ";
+        else if (user == 2) {
+            cout << "\n1. check stock\n2. add new product\n3. sign out\n>  ";
             cin >> option;
             if (option == 1) list_stock();
             else if (option == 2) new_item();
             else if (option == 3) signed_in = false;
             else cout << "invalid option; please enter 1/2/3\n";
+        }
+        else if (user == 3) {
+            cout << "placeholder - admin menu\n";
+            signed_in = false;
         }
     }
     cout << "\nsigning you out. bye bye :D\n\n";
