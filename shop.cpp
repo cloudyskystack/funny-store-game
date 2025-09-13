@@ -11,7 +11,11 @@ struct item {
 };
 
 void new_item() {
-    ofstream store_inventory("store_inventory.csv", ios::app); // THIS DOESN'T WORK???
+    ofstream store_inventory("store_inventory.csv", ios::app);
+    if (!store_inventory.is_open()) {
+        cout << "error: could not open file :(\n)";
+        return;
+    }
     int n;
     cout << "guidelines for inputs\n---------------------\n";
     cout << "spaces in item names are not allowed. ";
@@ -36,6 +40,10 @@ void new_item() {
 void list_stock() {
     cout << "list of products:\n";
     ifstream store_inventory("store_inventory.csv");
+    if (!store_inventory.is_open()) {
+        cout << "error: could not open file :(\n)";
+        return;
+    }
     string item_data;
 
     while(getline(store_inventory, item_data)) {
