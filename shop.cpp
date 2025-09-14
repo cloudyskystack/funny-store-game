@@ -46,8 +46,7 @@ void list_stock() {
         return;
     }
     string item_data;
-
-    // TO DO: account for csv header line
+    
     while(getline(store_inventory, item_data)) {
         stringstream ss(item_data);
         string item_name;
