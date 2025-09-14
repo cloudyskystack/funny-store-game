@@ -16,10 +16,11 @@ void new_item() {
         cout << "error: could not open file :(\n)";
         return;
     }
+
     int n;
-    cout << "guidelines for inputs\n---------------------\n";
+    cout << "\nguidelines for inputs\n---------------------\n";
     cout << "spaces in item names are not allowed. ";
-    cout << "separate words with underscores or dashes (program WILL CRASH)\n";
+    cout << "separate words with underscores or dashes (otherwise program WILL CRASH)\n";
     cout << "integers only for prices and stocks\n\n";
     cout << "number of items: "; cin >> n;
     
@@ -41,7 +42,7 @@ void list_stock() {
     cout << "list of products:\n";
     ifstream store_inventory("store_inventory.csv");
     if (!store_inventory.is_open()) {
-        cout << "error: could not open file :(\n)";
+        cout << "error: could not open file :(\n\n";
         return;
     }
     string item_data;
@@ -49,38 +50,76 @@ void list_stock() {
     while(getline(store_inventory, item_data)) {
         stringstream ss(item_data);
         string item_name;
-        int item_price, item_quantity;
+        int item_price, item_stock;
         char delimiter;
 
         getline(ss, item_name, ',');
-        ss >> item_price >> delimiter >> item_quantity;
+        ss >> item_price >> delimiter >> item_stock;
 
         cout << item_name << " - $" << item_price 
-        << " (" << item_quantity << " in stock)\n";
+        << " (" << item_stock << " in stock)\n";
     }
-    cout << "end of list\n";
+    cout << "end of list\n\n";
     store_inventory.close();
 }
 
+// TO DO: edit stock after purchase
 void buy() {
     list_stock();
     int n;
-    cout << "\nnumber of items to buy: "; cin >> n;
-    for (int i = 0; i < n; i++) {
-        string name; bool match = false;
-        cout << "product name: "; cin >> name;
+    cout << "number of items to buy: "; cin >> n;
+
+    ifstream store_inventory("store_inventory.csv");
+    if (!store_inventory.is_open()) {
+        cout << "error: could not open file :(\n\n";
+        return;
     }
+
+    for (int i = 0; i < n; i++) {
+        string name;
+        cout << "product name: "; cin >> name;
+
+        string item_data; bool found = false;
+        while(getline(store_inventory, item_data)) {
+            stringstream ss(item_data);
+            string item_name;
+            int item_price, item_stock;
+            char delimiter;
+
+            getline(ss, item_name, ',');
+            ss >> item_price >> delimiter >> item_stock;
+
+            if (name == item_name) {
+                found = true;
+                int quantity;
+                cout << "quantity: "; cin >> quantity;
+                if (quantity > item_stock) {
+                    cout << "not enough stock :(\n\n";
+                } else {
+                    cout << "you bought " << quantity << " " 
+                    << item_name << "(s) for $" 
+                    << item_price * quantity << "\n";
+                }
+            }
+        }
+        if (!found) {cout << "item not found :(\n\n"; return;}
+        store_inventory.clear(); // clear EOF flag
+        store_inventory.seekg(0); // return to beginning of file
+    }
+    cout << "\nthank you for shopping with us :)\n";
+    store_inventory.close();
 }
 
 int main() {
     int user, option; bool signed_in = true;
-    cout << "welcome to our shop :)\n\nsigning in as:\n1. customer\n2. staff\n3. admin\n>  ";
+    cout << "\nwelcome to our shop :)\n";
+    cout << "\nsigning in as:\n1. customer\n2. staff\n3. admin\n>  ";
     cin >> user;
     while (signed_in) {
         if (user == 1) {
             cout << "\n1. buy\n2. check balance\n3. sign out\n>  ";
             cin >> option;
-            if (option == 1) cout << "placeholder - buy stuff\n";
+            if (option == 1) buy();
             else if (option == 2) cout << "placeholder - check\n";
             else if (option == 3) signed_in = false;
             else cout << "invalid option; please enter 1/2/3\n";
