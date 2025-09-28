@@ -46,7 +46,7 @@ void list_stock() {
         return;
     }
     string item_data;
-
+    
     while(getline(store_inventory, item_data)) {
         stringstream ss(item_data);
         string item_name;
