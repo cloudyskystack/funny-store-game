@@ -6,3 +6,13 @@ body {
 h2 {
 	line-height: 0px;
 }
+
+img, iframe {
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+div {
+  width: auto;
+  display: inline-block;
+}
