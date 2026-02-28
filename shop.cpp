@@ -71,7 +71,7 @@ void buy() {
 
     ifstream store_inventory("store_inventory.csv");
     if (!store_inventory.is_open()) {
-        cout << "error: could not open file :(\n\n";
+        cout << "error: could not open store inventory file :(\n\n";
         return;
     }
 
@@ -86,7 +86,7 @@ void buy() {
             int item_price, item_stock;
             char delimiter;
 
-            getline(ss, item_name, ',');
+            getline(ss, item_name, ','); // first parameter was defined 5 lines ago
             ss >> item_price >> delimiter >> item_stock;
 
             if (name == item_name) {
@@ -102,8 +102,10 @@ void buy() {
                 }
             }
         }
-        if (!found) {cout << "item not found :(\n\n"; return;}
-        store_inventory.clear(); // clear EOF flag
+        
+        if (!found) cout << "item not found :(\n\n"; return;
+
+        store_inventory.clear(); // clear eof flag
         store_inventory.seekg(0); // return to beginning of file
     }
     cout << "\nthank you for shopping with us :)\n";
